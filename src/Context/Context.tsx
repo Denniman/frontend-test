@@ -1,19 +1,36 @@
 import React, { useState, PropsWithChildren, createContext } from "react";
 
+type BudgetItemsInterface = {
+    id: string;
+    budget: string;
+    percent: number;
+    category: string;
+};
+
 type AppProps = {
     monthlyBudget: string;
-    setMonthlyBudget: (amount: string) => void;
+    budgetItems: BudgetItemsInterface[];
+    setMonthlyBudget: (items: string) => void;
+    setBudgetItems: (item: BudgetItemsInterface[]) => void;
 };
 
 export const AppContext = createContext<AppProps>({
     monthlyBudget: "",
+    budgetItems: [],
     setMonthlyBudget: () => {},
+    setBudgetItems: () => {},
 });
 
 const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
     const [monthlyBudget, setMonthlyBudget] = useState("");
+    const [budgetItems, setBudgetItems] = useState<BudgetItemsInterface[]>([]);
 
-    const value = { monthlyBudget, setMonthlyBudget };
+    const value = {
+        budgetItems,
+        monthlyBudget,
+        setMonthlyBudget,
+        setBudgetItems,
+    };
     return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
