@@ -1,10 +1,11 @@
+import { RootRoutes } from "./routes";
+import { AppProvider } from "./Context";
+
 function App() {
     return (
-        <>
-            <p className="read-the-docs">
-                Click on the Vite and React logos to learn more
-            </p>
-        </>
+        <AppProvider>
+            <RootRoutes />
+        </AppProvider>
     );
 }
 
