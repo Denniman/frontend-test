@@ -19,20 +19,20 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
     options,
     selecteItem,
     setSelecteItem,
-    placeholder = "Select expense category",
+    placeholder = "Select Expense Category",
 }) => {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const [isOpen, setIsOpen] = useState(false);
 
     useEffect(() => {
-        function handleClickOutside(event: MouseEvent) {
+        const handleClickOutside = (event: MouseEvent) => {
             if (
                 dropdownRef.current &&
                 !dropdownRef.current.contains(event.target as Node)
             ) {
                 setIsOpen(false);
             }
-        }
+        };
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
@@ -40,7 +40,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         };
     }, []);
     return (
-        <div className="w-full relative text-sm" ref={dropdownRef}>
+        <div className="w-3/4 md:w-1/2 relative text-sm" ref={dropdownRef}>
             <button
                 className="p-3 bg-white flex items-center justify-between w-full"
                 onClick={() => setIsOpen(!isOpen)}
